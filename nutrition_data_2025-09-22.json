@@ -1,0 +1,135 @@
+{
+  "Monday": {
+    "macronutrients": {
+      "Carbohydrates": 0.0,
+      "Proteins": 0,
+      "Fats": 0,
+      "Fiber": 0,
+      "Water": 0
+    },
+    "micronutrients": {
+      "Iron": 0,
+      "Calcium": 0,
+      "Vitamin B12": 0,
+      "Vitamin D": 0,
+      "Vitamin C": 0,
+      "Zinc": 0,
+      "Folate": 0,
+      "Vitamin A": 0
+    }
+  },
+  "Tuesday": {
+    "macronutrients": {
+      "Carbohydrates": 0,
+      "Proteins": 0,
+      "Fats": 0,
+      "Fiber": 0,
+      "Water": 0
+    },
+    "micronutrients": {
+      "Iron": 0,
+      "Calcium": 0,
+      "Vitamin B12": 0,
+      "Vitamin D": 0,
+      "Vitamin C": 0,
+      "Zinc": 0,
+      "Folate": 0,
+      "Vitamin A": 0
+    }
+  },
+  "Wednesday": {
+    "macronutrients": {
+      "Carbohydrates": 0,
+      "Proteins": 0,
+      "Fats": 0,
+      "Fiber": 0,
+      "Water": 0
+    },
+    "micronutrients": {
+      "Iron": 0,
+      "Calcium": 0,
+      "Vitamin B12": 0,
+      "Vitamin D": 0,
+      "Vitamin C": 0,
+      "Zinc": 0,
+      "Folate": 0,
+      "Vitamin A": 0
+    }
+  },
+  "Thursday": {
+    "macronutrients": {
+      "Carbohydrates": 0,
+      "Proteins": 0,
+      "Fats": 0,
+      "Fiber": 0,
+      "Water": 0
+    },
+    "micronutrients": {
+      "Iron": 0,
+      "Calcium": 0,
+      "Vitamin B12": 0,
+      "Vitamin D": 0,
+      "Vitamin C": 0,
+      "Zinc": 0,
+      "Folate": 0,
+      "Vitamin A": 0
+    }
+  },
+  "Friday": {
+    "macronutrients": {
+      "Carbohydrates": 0,
+      "Proteins": 0,
+      "Fats": 0,
+      "Fiber": 0,
+      "Water": 0
+    },
+    "micronutrients": {
+      "Iron": 0,
+      "Calcium": 0,
+      "Vitamin B12": 0,
+      "Vitamin D": 0,
+      "Vitamin C": 0,
+      "Zinc": 0,
+      "Folate": 0,
+      "Vitamin A": 0
+    }
+  },
+  "Saturday": {
+    "macronutrients": {
+      "Carbohydrates": 0,
+      "Proteins": 0,
+      "Fats": 0,
+      "Fiber": 0,
+      "Water": 0
+    },
+    "micronutrients": {
+      "Iron": 0,
+      "Calcium": 0,
+      "Vitamin B12": 0,
+      "Vitamin D": 0,
+      "Vitamin C": 0,
+      "Zinc": 0,
+      "Folate": 0,
+      "Vitamin A": 0
+    }
+  },
+  "Sunday": {
+    "macronutrients": {
+      "Carbohydrates": 0,
+      "Proteins": 0,
+      "Fats": 6.0,
+      "Fiber": 0,
+      "Water": 0
+    },
+    "micronutrients": {
+      "Iron": 0,
+      "Calcium": 0,
+      "Vitamin B12": 0,
+      "Vitamin D": 0,
+      "Vitamin C": 0,
+      "Zinc": 0,
+      "Folate": 0,
+      "Vitamin A": 0
+    }
+  }
+}

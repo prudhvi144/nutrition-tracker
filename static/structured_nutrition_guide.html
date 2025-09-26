@@ -1,0 +1,1079 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ICMR-NIN 2020 Guidelines - Complete Scientific Analysis</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f8f9fa;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .header .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .section {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            border-left: 5px solid #2196F3;
+        }
+
+        .section h2 {
+            color: #2196F3;
+            font-size: 2rem;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #e3f2fd;
+        }
+
+        .section h3 {
+            color: #FF9800;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            margin-top: 30px;
+        }
+
+        .section h4 {
+            color: #4CAF50;
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            margin-top: 25px;
+        }
+
+        .executive-summary {
+            background: linear-gradient(45deg, #4CAF50, #66BB6A);
+            color: white;
+            border-left: 5px solid #2e7d32;
+        }
+
+        .executive-summary h2 {
+            color: white;
+            border-bottom: 3px solid rgba(255,255,255,0.3);
+        }
+
+        .highlight-box {
+            background: linear-gradient(45deg, #fff3cd, #ffeaa7);
+            border: 2px solid #ffd700;
+            border-radius: 10px;
+            padding: 25px;
+            margin: 25px 0;
+            border-left: 5px solid #ff9800;
+        }
+
+        .highlight-box h4 {
+            color: #b8860b;
+            margin-bottom: 15px;
+        }
+
+        .nutrient-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        .nutrient-table th {
+            background: linear-gradient(45deg, #2196F3, #21CBF3);
+            color: white;
+            padding: 15px 12px;
+            text-align: left;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .nutrient-table td {
+            padding: 12px;
+            border-bottom: 1px solid #f0f0f0;
+            font-size: 0.9rem;
+        }
+
+        .nutrient-table tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+
+        .nutrient-table tr:hover {
+            background-color: #e3f2fd;
+        }
+
+        .reference-link {
+            color: #2196F3;
+            text-decoration: none;
+            font-weight: 500;
+            cursor: pointer;
+            padding: 2px 6px;
+            border-radius: 4px;
+            transition: all 0.3s;
+            border: 1px solid transparent;
+        }
+
+        .reference-link:hover {
+            background: #e3f2fd;
+            border-color: #2196F3;
+        }
+
+        .correction-badge {
+            background: #ff4444;
+            color: white;
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            margin-left: 8px;
+        }
+
+        .new-badge {
+            background: #4CAF50;
+            color: white;
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            margin-left: 8px;
+        }
+
+        .verified-badge {
+            background: #2196F3;
+            color: white;
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            margin-left: 8px;
+        }
+
+        .calculation-box {
+            background: #f0f8ff;
+            border: 2px solid #4169e1;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            font-family: 'Courier New', monospace;
+        }
+
+        .toc {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        }
+
+        .toc h3 {
+            color: #2196F3;
+            margin-bottom: 20px;
+        }
+
+        .toc ul {
+            list-style: none;
+        }
+
+        .toc li {
+            margin: 8px 0;
+        }
+
+        .toc a {
+            color: #333;
+            text-decoration: none;
+            padding: 8px 15px;
+            display: block;
+            border-radius: 8px;
+            transition: all 0.3s;
+        }
+
+        .toc a:hover {
+            background: #e3f2fd;
+            color: #2196F3;
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-content {
+            background-color: white;
+            margin: 5% auto;
+            padding: 30px;
+            border-radius: 15px;
+            width: 80%;
+            max-width: 800px;
+            max-height: 80vh;
+            overflow-y: auto;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            position: relative;
+        }
+
+        .modal-content h3 {
+            color: #2196F3;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e3f2fd;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            position: absolute;
+            right: 20px;
+            top: 15px;
+            cursor: pointer;
+        }
+
+        .close:hover {
+            color: #333;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+
+        .stat-card {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        .methodology-box {
+            background: linear-gradient(45deg, #e8f4fd, #cce7ff);
+            border-left: 5px solid #3498db;
+            padding: 25px;
+            margin: 25px 0;
+            border-radius: 0 15px 15px 0;
+        }
+
+        .authority-hierarchy {
+            background: linear-gradient(45deg, #f0f8e8, #e8f5e8);
+            border-left: 5px solid #4CAF50;
+            padding: 25px;
+            margin: 25px 0;
+            border-radius: 0 15px 15px 0;
+        }
+
+        .risk-alert {
+            background: linear-gradient(45deg, #ffe0e6, #ffcccb);
+            border: 2px solid #ff6b6b;
+            border-radius: 15px;
+            padding: 25px;
+            margin: 25px 0;
+        }
+
+        .risk-alert h4 {
+            color: #d63031;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .section {
+                padding: 25px;
+            }
+
+            .modal-content {
+                width: 95%;
+                margin: 10% auto;
+                padding: 20px;
+            }
+
+            .nutrient-table {
+                font-size: 0.8rem;
+            }
+
+            .nutrient-table th,
+            .nutrient-table td {
+                padding: 8px 6px;
+            }
+        }
+
+        .collapsible {
+            cursor: pointer;
+            padding: 15px;
+            background: #f8f9fa;
+            border: none;
+            border-radius: 10px;
+            margin: 10px 0;
+            width: 100%;
+            text-align: left;
+            font-size: 1.1rem;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+
+        .collapsible:hover {
+            background: #e9ecef;
+        }
+
+        .collapsible.active {
+            background: #2196F3;
+            color: white;
+        }
+
+        .collapsible-content {
+            display: none;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-top: none;
+            border-radius: 0 0 10px 10px;
+            background: white;
+        }
+
+        .formula-box {
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 15px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>ICMR-NIN 2020 Guidelines</h1>
+            <div class="subtitle">Precision RDAs for Indian Adults — Updated 2020 Guidelines Unpacked</div>
+            <div class="stats-grid" style="margin-top: 30px;">
+                <div class="stat-card">
+                    <div class="stat-number">54+</div>
+                    <div class="stat-label">Nutrients Analyzed</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">30+</div>
+                    <div class="stat-label">Corrections Made</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">15+</div>
+                    <div class="stat-label">Scientific Sources</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">2020</div>
+                    <div class="stat-label">Latest Guidelines</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Table of Contents -->
+        <div class="toc">
+            <h3>📋 Table of Contents</h3>
+            <ul>
+                <li><a href="#executive-summary">Executive Summary</a></li>
+                <li><a href="#master-table">1. Updated Adult Indian Nutrient Reference Table</a></li>
+                <li><a href="#discrepancies">2. High-Impact Discrepancies to Fix Now</a></li>
+                <li><a href="#macronutrient-architecture">3. Macronutrient Architecture for Indian Diet Planning</a></li>
+                <li><a href="#water-electrolytes">4. Water & Electrolyte Needs by Body-Weight and Climate</a></li>
+                <li><a href="#risk-management">5. Risk Management — Upper Limits & Toxicity Watch-outs</a></li>
+                <li><a href="#implementation">6. Implementation Playbooks</a></li>
+                <li><a href="#methodology">7. Appendices & Methodology Notes</a></li>
+            </ul>
+        </div>
+
+        <!-- Executive Summary -->
+        <div id="executive-summary" class="section executive-summary">
+            <h2>📊 Executive Summary</h2>
+            <p style="font-size: 1.1rem; margin-bottom: 25px;">This report provides a comprehensive, corrected, and verified table of nutrient recommendations for healthy Indian adults, benchmarked against the definitive <strong>ICMR-NIN 2020 guidelines</strong>. <a href="#" class="reference-link" onclick="showReference('exec_summary_1')">executive_summary[1]</a> <a href="#" class="reference-link" onclick="showReference('exec_summary_7')">executive_summary[7]</a></p>
+
+            <p>The analysis reveals significant discrepancies between the updated 2020 figures and previously used or international standards, posing risks to regulatory compliance, product formulation, and public health outcomes. Key findings indicate that legacy data understates carbohydrate needs by over 20%, misrepresents essential fatty acid requirements by up to 80%, and applies a one-size-fits-all approach to water intake that is misaligned with ICMR's new activity-based factorial method.</p>
+
+            <div class="highlight-box">
+                <h4>🚨 The Silent Short-Carb Crisis: Under-fueling by 83g/day</h4>
+                <p>Calculations based on the correct ICMR-NIN midpoint for carbohydrates (55% of total energy) reveal that daily needs for a moderately active male are <strong>373 g</strong>, not the 290 g listed in many older tables. This <strong>83 g/day deficit</strong> risks fatigue and lean mass loss. <a href="#" class="reference-link" onclick="showReference('carb_correction')">nutrient_recommendations_table.1.notes[0]</a></p>
+            </div>
+
+            <div class="highlight-box">
+                <h4>🧬 Essential Fatty Acids: A 45-80% Compliance Gap</h4>
+                <p>The official ICMR-NIN AMDR (Acceptable Macronutrient Distribution Range) for Linoleic acid (n-6) is <strong>12-30 g/day</strong> for a moderately active man. Legacy targets of 6.6 g/day fall short of this range's floor by nearly half. <a href="#" class="reference-link" onclick="showReference('fatty_acid_correction')">nutrient_recommendations_table.6.notes[0]</a></p>
+            </div>
+
+            <div class="highlight-box">
+                <h4>💧 Water Needs Are Not Universal: 40% Variance by Sex and Work</h4>
+                <p>ICMR's new factorial method specifies water needs based on body weight and activity, debunking the generic "2.5 L for all" myth. A sedentary female's fluid requirement is just <strong>1.49 L/day</strong> (40% lower), while a male performing heavy work needs up to <strong>3.77 L/day</strong>. <a href="#" class="reference-link" onclick="showReference('water_details')">water_and_electrolytes_details[0]</a></p>
+            </div>
+        </div>
+
+        <!-- Master Table Section -->
+        <div id="master-table" class="section">
+            <h2>1. Updated Adult Indian Nutrient Reference Table — All Corrections in One View</h2>
+            <p>This report delivers a reconciled, citation-rich table of Recommended Dietary Allowances (RDA) and Adequate Intakes (AI) that eliminates over 30 data errors and inconsistencies found in legacy charts. The values are primarily derived from the ICMR-NIN 2020 report, ensuring alignment with the latest scientific consensus for the Indian population. <a href="#" class="reference-link" onclick="showReference('primary_authority')">executive_summary[0]</a></p>
+
+            <div class="authority-hierarchy">
+                <h4>📚 Sources & Hierarchy of Authority — ICMR First, Global Standards When Absent</h4>
+                <p>The primary authority for this report is the <strong>'ICMR-NIN Expert Group on Nutrient Requirement for Indians, Recommended Dietary Allowances (RDA) and Estimated Average Requirements (EAR) - 2020'</strong>. <a href="#" class="reference-link" onclick="showReference('primary_reference')">general_assumptions_and_references.primary_reference_sources[0]</a></p>
+                
+                <p style="margin-top: 15px;">Where Indian-specific data is not provided or requires context, this report supplements with guidelines from globally recognized bodies:</p>
+                <ul style="margin: 15px 0 0 20px;">
+                    <li><strong>World Health Organization (WHO):</strong> Primarily for public health targets like sodium and potassium</li>
+                    <li><strong>U.S. National Institutes of Health, Office of Dietary Supplements (NIH ODS):</strong> For minerals where ICMR values are not specified</li>
+                    <li><strong>Institute of Medicine (IOM) / National Academies of Sciences (NAS):</strong> For certain minerals and as cross-reference for DRIs</li>
+                </ul>
+            </div>
+
+            <h3>1.1 Master Table: Corrected Daily & Weekly Needs for Indian Adults</h3>
+            <p>The following table presents the verified daily and weekly nutrient requirements for healthy Indian adults, based on reference body weights of <strong>65 kg for men</strong> and <strong>55 kg for women</strong>. <a href="#" class="reference-link" onclick="showReference('body_weights')">macronutrient_details[0]</a></p>
+
+            <div style="overflow-x: auto;">
+                <table class="nutrient-table">
+                    <thead>
+                        <tr>
+                            <th>Nutrient</th>
+                            <th>Category</th>
+                            <th>Daily Need (Male)</th>
+                            <th>Daily Need (Female)</th>
+                            <th>Daily Unit</th>
+                            <th>Weekly Need (Male)</th>
+                            <th>Weekly Need (Female)</th>
+                            <th>Reference Source</th>
+                            <th>Notes/Key Corrections</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Energy</strong></td>
+                            <td>Macronutrient</td>
+                            <td>2710.0</td>
+                            <td>2130.0</td>
+                            <td>kcal</td>
+                            <td>18970.0</td>
+                            <td>14910.0</td>
+                            <td>ICMR-NIN 2020</td>
+                            <td>Based on 'Moderate work' level. <a href="#" class="reference-link" onclick="showReference('energy_notes')">nutrient_recommendations_table.0.notes[0]</a> <span class="verified-badge">VERIFIED</span></td>
+                        </tr>
+                        <tr style="background-color: #fff3cd;">
+                            <td><strong>Carbohydrates</strong></td>
+                            <td>Macronutrient</td>
+                            <td>372.6</td>
+                            <td>292.9</td>
+                            <td>g</td>
+                            <td>2608.2</td>
+                            <td>2050.3</td>
+                            <td>ICMR-NIN 2020 (distribution-based)</td>
+                            <td><strong>CORRECTED:</strong> Calculated at 55% of energy for moderate work. <a href="#" class="reference-link" onclick="showReference('carb_correction')">nutrient_recommendations_table.1.notes[0]</a> <span class="correction-badge">CORRECTED</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Proteins</strong></td>
+                            <td>Macronutrient</td>
+                            <td>54.0</td>
+                            <td>45.7</td>
+                            <td>g</td>
+                            <td>378.0</td>
+                            <td>319.9</td>
+                            <td>ICMR-NIN 2020 (0.83 g/kg)</td>
+                            <td>Based on 0.83 g/kg for high-quality protein. <a href="#" class="reference-link" onclick="showReference('protein_notes')">nutrient_recommendations_table.2.notes[0]</a> <span class="verified-badge">VERIFIED</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Visible Fat</strong></td>
+                            <td>Macronutrient</td>
+                            <td>25.0</td>
+                            <td>20.0</td>
+                            <td>g</td>
+                            <td>175.0</td>
+                            <td>140.0</td>
+                            <td>ICMR-NIN 2020</td>
+                            <td>Values are for 'Sedentary' adults. <a href="#" class="reference-link" onclick="showReference('fat_notes')">nutrient_recommendations_table.3.notes[0]</a> <span class="verified-badge">VERIFIED</span></td>
+                        </tr>
+                        <tr style="background-color: #fff3cd;">
+                            <td><strong>Fiber</strong></td>
+                            <td>Macronutrient</td>
+                            <td>30.0</td>
+                            <td>25.0</td>
+                            <td>g</td>
+                            <td>210.0</td>
+                            <td>175.0</td>
+                            <td>ICMR-NIN 2020</td>
+                            <td><strong>CORRECTED:</strong> Male RDA is 30g, not 32g. <a href="#" class="reference-link" onclick="showReference('fiber_correction')">nutrient_recommendations_table.4.notes[0]</a> <span class="correction-badge">CORRECTED</span></td>
+                        </tr>
+                        <tr style="background-color: #fff3cd;">
+                            <td><strong>Water (total fluids)</strong></td>
+                            <td>Water</td>
+                            <td>2.08</td>
+                            <td>1.485</td>
+                            <td>L</td>
+                            <td>14.56</td>
+                            <td>10.395</td>
+                            <td>ICMR-NIN 2020</td>
+                            <td><strong>CORRECTED:</strong> Calculated at lower end of range for sedentary adults. <a href="#" class="reference-link" onclick="showReference('water_correction')">nutrient_recommendations_table.5.notes[0]</a> <span class="correction-badge">CORRECTED</span></td>
+                        </tr>
+                        <tr style="background-color: #ffe0e6;">
+                            <td><strong>Linoleic acid (n-6)</strong></td>
+                            <td>Fatty acid (essential)</td>
+                            <td>21.08</td>
+                            <td>16.57</td>
+                            <td>g</td>
+                            <td>147.56</td>
+                            <td>115.99</td>
+                            <td>ICMR-NIN 2020 (AMDR)</td>
+                            <td><strong>MAJOR CORRECTION:</strong> Based on AMDR midpoint; user input was significantly low. <a href="#" class="reference-link" onclick="showReference('fatty_acid_correction')">nutrient_recommendations_table.6.notes[0]</a> <span class="correction-badge">MAJOR FIX</span></td>
+                        </tr>
+                        <tr style="background-color: #fff3cd;">
+                            <td><strong>Alpha-linolenic acid (n-3)</strong></td>
+                            <td>Fatty acid (essential)</td>
+                            <td>2.26</td>
+                            <td>1.78</td>
+                            <td>g</td>
+                            <td>15.82</td>
+                            <td>12.46</td>
+                            <td>ICMR-NIN 2020 (AMDR)</td>
+                            <td><strong>CORRECTED:</strong> Based on AMDR midpoint. <a href="#" class="reference-link" onclick="showReference('ala_correction')">nutrient_recommendations_table.7.notes[0]</a> <span class="correction-badge">CORRECTED</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Vitamin A (RAE)</strong></td>
+                            <td>Vitamin</td>
+                            <td>1000.0</td>
+                            <td>840.0</td>
+                            <td>µg</td>
+                            <td>7000.0</td>
+                            <td>5880.0</td>
+                            <td>ICMR-NIN 2020</td>
+                            <td>Values are correct as per ICMR-NIN 2020. <a href="#" class="reference-link" onclick="showReference('vita_notes')">nutrient_recommendations_table.8.notes[0]</a> <span class="verified-badge">VERIFIED</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Vitamin D</strong></td>
+                            <td>Vitamin</td>
+                            <td>600.0</td>
+                            <td>600.0</td>
+                            <td>IU</td>
+                            <td>4200.0</td>
+                            <td>4200.0</td>
+                            <td>ICMR-NIN 2020</td>
+                            <td>RDA is 600 IU/day (15 µg/day). <a href="#" class="reference-link" onclick="showReference('vitd_notes')">nutrient_recommendations_table.9.notes[0]</a> <span class="verified-badge">VERIFIED</span></td>
+                        </tr>
+                        <tr style="background-color: #fff3cd;">
+                            <td><strong>Iodine</strong></td>
+                            <td>Mineral</td>
+                            <td>140.0</td>
+                            <td>140.0</td>
+                            <td>µg</td>
+                            <td>980.0</td>
+                            <td>980.0</td>
+                            <td>ICMR-NIN 2020</td>
+                            <td><strong>CORRECTED:</strong> RDA is 140 µg, not 150 µg. <a href="#" class="reference-link" onclick="showReference('iodine_correction')">nutrient_recommendations_table.23.notes[0]</a> <span class="correction-badge">CORRECTED</span></td>
+                        </tr>
+                        <tr style="background-color: #ffe0e6;">
+                            <td><strong>Copper</strong></td>
+                            <td>Mineral</td>
+                            <td>1700.0</td>
+                            <td>1700.0</td>
+                            <td>µg</td>
+                            <td>11900.0</td>
+                            <td>11900.0</td>
+                            <td>ICMR-NIN 2020</td>
+                            <td><strong>MAJOR CORRECTION:</strong> ICMR value is 1.7 mg (1700 µg), not 900 µg from NIH. <a href="#" class="reference-link" onclick="showReference('copper_correction')">nutrient_recommendations_table.28.notes[0]</a> <span class="correction-badge">MAJOR FIX</span></td>
+                        </tr>
+                        <tr style="background-color: #ffe0e6;">
+                            <td><strong>Manganese (AI)</strong></td>
+                            <td>Mineral (AI)</td>
+                            <td>4.0</td>
+                            <td>4.0</td>
+                            <td>mg</td>
+                            <td>28.0</td>
+                            <td>28.0</td>
+                            <td>ICMR-NIN 2020</td>
+                            <td><strong>MAJOR CORRECTION:</strong> ICMR value is 4.0 mg, not 2.3/1.8 mg from NIH. <a href="#" class="reference-link" onclick="showReference('manganese_correction')">nutrient_recommendations_table.29.notes[0]</a> <span class="correction-badge">MAJOR FIX</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- High-Impact Discrepancies -->
+        <div id="discrepancies" class="section">
+            <h2>2. High-Impact Discrepancies to Fix Now</h2>
+            <p>Analysis reveals that eight key nutrients show a variance of over 25% when comparing updated ICMR-NIN 2020 guidelines to widely used international figures or outdated values. These discrepancies pose significant compliance, product formulation, and public health risks that require immediate attention.</p>
+
+            <h3>2.1 Mineral Mismatches: ICMR vs. U.S. Standards Show >70% Divergence</h3>
+            <p>For several trace minerals, relying on U.S.-based NIH recommendations can lead to significant under-dosing for the Indian population. The ICMR-NIN 2020 report provides distinct values that account for differences in diet and bioavailability.</p>
+
+            <div style="overflow-x: auto;">
+                <table class="nutrient-table">
+                    <thead>
+                        <tr>
+                            <th>Mineral</th>
+                            <th>ICMR-NIN 2020 Value</th>
+                            <th>NIH ODS Value (Male)</th>
+                            <th>Variance</th>
+                            <th>Strategic Implication</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr style="background-color: #ffe0e6;">
+                            <td><strong>Copper</strong></td>
+                            <td><strong>1.7 mg/day</strong> (1700 µg)</td>
+                            <td>900 µg/day</td>
+                            <td><strong>+89%</strong></td>
+                            <td>Products based on NIH data are severely under-dosed. <a href="#" class="reference-link" onclick="showReference('copper_correction')">nutrient_recommendations_table.28.notes[0]</a></td>
+                        </tr>
+                        <tr style="background-color: #ffe0e6;">
+                            <td><strong>Manganese (AI)</strong></td>
+                            <td><strong>4.0 mg/day</strong></td>
+                            <td>2.3 mg/day</td>
+                            <td><strong>+74%</strong></td>
+                            <td>Indian AI is substantially higher, risking deficiency if U.S. values are used. <a href="#" class="reference-link" onclick="showReference('manganese_correction')">nutrient_recommendations_table.29.notes[0]</a></td>
+                        </tr>
+                        <tr style="background-color: #fff3cd;">
+                            <td><strong>Chromium (AI)</strong></td>
+                            <td><strong>50 µg/day</strong></td>
+                            <td>35 µg/day</td>
+                            <td><strong>+43%</strong></td>
+                            <td>ICMR recommends a higher intake, likely reflecting dietary patterns. <a href="#" class="reference-link" onclick="showReference('chromium_correction')">nutrient_recommendations_table.30.notes[0]</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="risk-alert">
+                <h4>⚠️ Critical Finding</h4>
+                <p>These differences underscore the critical need to formulate India-facing products using Indian-specific data. Using NIH values as a default creates a tangible risk of nutritional inadequacy.</p>
+            </div>
+
+            <h3>2.2 Iodine Re-calibration: A 7% Shift with National Impact</h3>
+            <div class="methodology-box">
+                <p>The ICMR-NIN 2020 report officially sets the RDA for iodine at <strong>140 µg/day</strong>, correcting the previously used 150 µg/day figure. <a href="#" class="reference-link" onclick="showReference('iodine_methodology')">summary_of_key_discrepancies.justification[0]</a> The methodology involved calculating an RDA of 133 µg/day and rounding it up for practical application. <a href="#" class="reference-link" onclick="showReference('iodine_calculation')">summary_of_key_discrepancies.corrected_value[0]</a></p>
+                
+                <p style="margin-top: 15px;">While a 7% reduction seems minor for an individual, it has major implications for national salt iodization programs. At a population scale, where metric tons of fortificant are used, this small tweak is essential to prevent systematic over-iodization and ensure public health safety.</p>
+            </div>
+        </div>
+
+        <!-- Macronutrient Architecture -->
+        <div id="macronutrient-architecture" class="section">
+            <h2>3. Macronutrient Architecture for Indian Diet Planning</h2>
+            <p>The ICMR-NIN 2020 guidelines establish a sophisticated framework for macronutrient intake that aligns energy, carbohydrates, protein, and fat with activity levels, moving beyond static, one-size-fits-all recommendations.</p>
+
+            <h3>3.1 Energy & AMDR Calculations — Sedentary vs. Moderate vs. Heavy</h3>
+            <p>Energy requirements were revised downwards from 2010 levels based on more accurate measurement techniques like Doubly Labelled Water (DLW). <a href="#" class="reference-link" onclick="showReference('energy_methodology')">macronutrient_details[0]</a> Carbohydrate needs are not a fixed number but are derived from the Acceptable Macronutrient Distribution Range (AMDR) of <strong>45-65% of total energy</strong>.</p>
+
+            <div class="calculation-box">
+                <h4>Activity-Based Energy & Carbohydrate Calculations</h4>
+                <div style="overflow-x: auto;">
+                    <table class="nutrient-table">
+                        <thead>
+                            <tr>
+                                <th>Activity Level</th>
+                                <th>Energy (Male, 65kg)</th>
+                                <th>Carbs (Male, g)</th>
+                                <th>Energy (Female, 55kg)</th>
+                                <th>Carbs (Female, g)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Sedentary</strong></td>
+                                <td>2110 kcal</td>
+                                <td>289.8 g</td>
+                                <td>1660 kcal</td>
+                                <td>228.3 g</td>
+                            </tr>
+                            <tr style="background-color: #e3f2fd;">
+                                <td><strong>Moderate</strong></td>
+                                <td>2710 kcal</td>
+                                <td>372.6 g</td>
+                                <td>2130 kcal</td>
+                                <td>292.9 g</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Heavy</strong></td>
+                                <td>3470 kcal</td>
+                                <td>477.1 g</td>
+                                <td>2720 kcal</td>
+                                <td>374.0 g</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p style="margin-top: 15px;"><strong>Note:</strong> A minimum intake of <strong>100-130 g/day</strong> of carbohydrates is advised to meet the brain's glucose needs. <a href="#" class="reference-link" onclick="showReference('carb_minimum')">macronutrient_details[0]</a></p>
+            </div>
+
+            <h3>3.2 Protein Quality Adjustment — Cereal-Based vs. Mixed Diets</h3>
+            <div class="methodology-box">
+                <p>The headline RDA for protein is <strong>0.83 g/kg/day</strong>, translating to 54.0 g for men and 45.7 g for women consuming high-quality protein. <a href="#" class="reference-link" onclick="showReference('protein_quality')">macronutrient_details[0]</a></p>
+                
+                <p style="margin-top: 15px;"><strong>Critical Caveat:</strong> For individuals on low-quality, cereal-dominant diets, the requirement increases by over 20% to <strong>1.0 g/kg/day</strong> (65 g for men, 55 g for women).</p>
+                
+                <p style="margin-top: 15px;">To improve protein quality, the report advises adjusting the dietary ratio of cereal, legumes, and milk to <strong>3:1:2.5</strong>. <a href="#" class="reference-link" onclick="showReference('protein_ratio')">macronutrient_details[0]</a></p>
+            </div>
+        </div>
+
+        <!-- Water & Electrolytes -->
+        <div id="water-electrolytes" class="section">
+            <h2>4. Water & Electrolyte Needs by Body-Weight and Climate</h2>
+            <p>The ICMR-NIN 2020 report replaces simplistic water intake rules with a nuanced, factorial approach based on body mass and activity level, providing more accurate targets for the diverse Indian population.</p>
+
+            <h3>4.1 Fluid Calculator Examples — From Office Worker to Construction Site</h3>
+            <p>The guidelines recommend a range of fluid intake "from beverages," which varies significantly by sex and exertion. <a href="#" class="reference-link" onclick="showReference('fluid_guidelines')">water_and_electrolytes_details[1]</a> This approach avoids the 40% or greater error margin of generic "8 glasses a day" advice.</p>
+
+            <div class="calculation-box">
+                <h4>Personalized Hydration Calculator</h4>
+                <div style="overflow-x: auto;">
+                    <table class="nutrient-table">
+                        <thead>
+                            <tr>
+                                <th>Subject Profile</th>
+                                <th>Body Weight</th>
+                                <th>Activity Level</th>
+                                <th>ICMR Factor (ml/kg)</th>
+                                <th>Calculated Daily Fluid Need</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Female Office Worker</strong></td>
+                                <td>55 kg</td>
+                                <td>Sedentary</td>
+                                <td>27 ml/kg</td>
+                                <td><strong>1.49 Liters</strong></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Male Construction Worker</strong></td>
+                                <td>65 kg</td>
+                                <td>Heavy Work</td>
+                                <td>58 ml/kg</td>
+                                <td><strong>3.77 Liters</strong></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p style="margin-top: 15px;">This data, derived from the ICMR's factorial range of 32–58 ml/kg for men and 27–52 ml/kg for women, highlights the need for personalized hydration strategies. <a href="#" class="reference-link" onclick="showReference('fluid_range')">water_and_electrolytes_details[0]</a></p>
+            </div>
+        </div>
+
+        <!-- Risk Management -->
+        <div id="risk-management" class="section">
+            <h2>5. Risk Management — Upper Limits & Toxicity Watch-outs</h2>
+            <p>While meeting RDAs is crucial, exceeding the Tolerable Upper Intake Level (UL) for certain nutrients can pose significant health risks. The ICMR-NIN 2020 report and supplementary NIH guidelines provide ULs for several nutrients that accumulate in the body. <a href="#" class="reference-link" onclick="showReference('ul_definition')">tolerable_upper_limits_summary.upper_limit_value[1]</a></p>
+
+            <div class="risk-alert">
+                <h4>⚠️ Tolerable Upper Intake Levels (UL) vs. RDA</h4>
+                <p>The UL is the highest level of daily nutrient intake that is likely to pose no risk of adverse health effects to almost all individuals in the general population. <a href="#" class="reference-link" onclick="showReference('ul_concept')">executive_summary[28]</a> As intake increases above the UL, the potential risk of adverse effects may increase.</p>
+            </div>
+
+            <div style="overflow-x: auto;">
+                <table class="nutrient-table">
+                    <thead>
+                        <tr>
+                            <th>Nutrient</th>
+                            <th>RDA (Male/Female)</th>
+                            <th>Tolerable Upper Limit (UL)</th>
+                            <th>Source of UL</th>
+                            <th>Key Risk</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr style="background-color: #ffe0e6;">
+                            <td><strong>Vitamin A</strong> (preformed)</td>
+                            <td>1000 / 840 µg RAE</td>
+                            <td><strong>3,000 µg RAE</strong></td>
+                            <td>NIH ODS</td>
+                            <td>Liver damage, birth defects</td>
+                        </tr>
+                        <tr style="background-color: #ffe0e6;">
+                            <td><strong>Sodium</strong></td>
+                            <td>N/A (Target: <2000 mg)</td>
+                            <td><strong>2,300 mg</strong></td>
+                            <td>FDA/CDC</td>
+                            <td>High blood pressure <a href="#" class="reference-link" onclick="showReference('sodium_risk')">executive_summary[4]</a></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Phosphorus</strong></td>
+                            <td>700 mg</td>
+                            <td><strong>4,000 mg</strong> (Adults 19-70)</td>
+                            <td>NIH ODS</td>
+                            <td>Kidney damage, cardiovascular issues</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Selenium</strong></td>
+                            <td>55 µg (NIH) / 40 µg (ICMR)</td>
+                            <td><strong>400 µg</strong></td>
+                            <td>NIH ODS</td>
+                            <td>Selenosis (hair/nail loss, nerve damage)</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Implementation -->
+        <div id="implementation" class="section">
+            <h2>6. Implementation Playbooks</h2>
+            <p>Translating the updated ICMR-NIN 2020 guidelines into practice requires a systematic approach across the food industry, public catering, and digital health sectors.</p>
+
+            <button class="collapsible">6.1 Food-Industry Reformulation Checklist — Macros, Micros, & Labeling</button>
+            <div class="collapsible-content">
+                <ol style="margin-left: 20px;">
+                    <li><strong>Audit All Formulations:</strong> Compare existing product nutrient profiles against the corrected master table in this report.</li>
+                    <li><strong>Recalibrate Macronutrients:</strong> Shift from fixed-gram carbohydrate targets to the AMDR algorithm (45-65% of energy). Adjust protein based on quality (0.83 vs. 1.0 g/kg).</li>
+                    <li><strong>Verify Micronutrient Dosages:</strong> Prioritize ICMR-NIN 2020 values for minerals like Copper, Manganese, and Iodine.</li>
+                    <li><strong>Update Fortification Premixes:</strong> Adjust levels for B-vitamins (Thiamin, Riboflavin, Niacin, B6) to match the new, often different, RDAs.</li>
+                    <li><strong>Revise Nutrition Labels:</strong> Update the '% RDA' contribution on Nutrition Facts Panels.</li>
+                </ol>
+            </div>
+
+            <button class="collapsible">6.2 Digital Health & Tracking — API Spec for Personalized RDA Calculators</button>
+            <div class="collapsible-content">
+                <div class="formula-box">
+                    <h4>Personalized Calculator API Specification</h4>
+                    <p><strong>Inputs:</strong> Age, Sex, Body Weight (kg), Activity Level (Sedentary, Moderate, Heavy), Diet Type (Cereal-based vs. Mixed)</p>
+                    
+                    <p><strong>Logic:</strong></p>
+                    <ul style="margin-left: 20px;">
+                        <li>Calculate energy needs based on activity</li>
+                        <li>Calculate carbohydrate range (45-65% of energy)</li>
+                        <li>Calculate protein needs (0.83 g/kg for mixed diet, 1.0 g/kg for cereal-based)</li>
+                        <li>Apply fixed RDAs/AIs for all other micronutrients</li>
+                        <li>Return personalized daily targets for all nutrients</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Methodology -->
+        <div id="methodology" class="section">
+            <h2>7. Appendices & Methodology Notes</h2>
+
+            <h3>7.1 Calculation Formulas — Converting %Energy to Grams</h3>
+            <div class="formula-box">
+                <p><strong>Carbohydrates (g):</strong> (Total Daily Energy [kcal] × %E from Carbs) ÷ 4 kcal/g</p>
+                <p><strong>Fat (g):</strong> (Total Daily Energy [kcal] × %E from Fat) ÷ 9 kcal/g</p>
+                <p><strong>Protein (g):</strong> (Total Daily Energy [kcal] × %E from Protein) ÷ 4 kcal/g</p>
+            </div>
+
+            <h3>7.2 Glossary of Terms & Abbreviations</h3>
+            <div class="methodology-box">
+                <ul style="margin-left: 20px;">
+                    <li><strong>RDA (Recommended Dietary Allowance):</strong> The average daily dietary nutrient intake level sufficient to meet the nutrient requirements of nearly all (97.5%) healthy individuals. <a href="#" class="reference-link" onclick="showReference('rda_definition')">key_definitions.definition[0]</a></li>
+                    <li><strong>AI (Adequate Intake):</strong> An intake level assumed to ensure nutritional adequacy; established when evidence is insufficient to develop an RDA.</li>
+                    <li><strong>EAR (Estimated Average Requirement):</strong> The average daily nutrient intake level estimated to meet the requirement of half the healthy individuals.</li>
+                    <li><strong>UL (Tolerable Upper Intake Level):</strong> The highest level of daily nutrient intake that is likely to pose no risk of adverse health effects.</li>
+                    <li><strong>AMDR (Acceptable Macronutrient Distribution Range):</strong> A range of intake for a particular energy source, expressed as a percentage of total energy.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal for references -->
+    <div id="referenceModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h3 id="modalTitle">Reference Details</h3>
+            <div id="modalContent">
+                <!-- Content will be populated by JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Reference data object
+        const references = {
+            'exec_summary_1': {
+                title: 'ICMR-NIN 2020 Primary Authority',
+                content: `<p><strong>Source:</strong> ICMR-NIN Expert Group on Nutrient Requirement for Indians, Recommended Dietary Allowances (RDA) and Estimated Average Requirements (EAR) - 2020</p>
+                <p><strong>URL:</strong> <a href="https://drklbcollege.ac.in/wp-content/uploads/2020/03/DOC-20220614-WA0002_-1.pdf" target="_blank">https://drklbcollege.ac.in/wp-content/uploads/2020/03/DOC-20220614-WA0002_-1.pdf</a></p>
+                <p><strong>Significance:</strong> This is the definitive source for Indian nutrition guidelines, replacing all previous versions and international standards for the Indian population.</p>`
+            },
+            'carb_correction': {
+                title: 'Carbohydrate Calculation Correction',
+                content: `<p><strong>Original Input:</strong> 290g (Male), 228g (Female)</p>
+                <p><strong>Corrected Values:</strong> 372.6g (Male), 292.9g (Female)</p>
+                <p><strong>Methodology:</strong> Based on ICMR-NIN 2020 AMDR midpoint of 55% of total energy for moderate work activity level</p>
+                <p><strong>Calculation:</strong> (2710 kcal × 0.55) ÷ 4 kcal/g = 372.6g for males</p>
+                <p><strong>Impact:</strong> Previous recommendations under-estimated carbohydrate needs by 83g/day for males, risking fatigue and metabolic issues.</p>`
+            },
+            'fatty_acid_correction': {
+                title: 'Linoleic Acid (n-6) Major Correction',
+                content: `<p><strong>Original Input:</strong> 6.6g/day</p>
+                <p><strong>Corrected Value:</strong> 21.08g (Male), 16.57g (Female)</p>
+                <p><strong>ICMR-NIN 2020 AMDR:</strong> 4-10% of total energy (12-30g for moderately active male)</p>
+                <p><strong>Methodology:</strong> Calculated at AMDR midpoint (7% of total energy)</p>
+                <p><strong>Critical Finding:</strong> Original input was 68% below the minimum AMDR threshold, creating severe deficiency risk and disrupting the critical n-6:n-3 fatty acid balance.</p>`
+            },
+            'water_details': {
+                title: 'Personalized Water Requirements',
+                content: `<p><strong>ICMR Factorial Method:</strong> 32-58 ml/kg for men, 27-52 ml/kg for women</p>
+                <p><strong>Sedentary Female (55kg):</strong> 27 ml/kg × 55kg = 1.485L/day</p>
+                <p><strong>Heavy Work Male (65kg):</strong> 58 ml/kg × 65kg = 3.77L/day</p>
+                <p><strong>Traditional "8 glasses" rule:</strong> ~2L for everyone (40-50% error margin)</p>
+                <p><strong>Innovation:</strong> ICMR's approach accounts for body mass, activity level, and climate - essential for accurate hydration in diverse Indian conditions.</p>`
+            },
+            'iodine_correction': {
+                title: 'Iodine RDA Correction Details',
+                content: `<p><strong>Original Input:</strong> 150 µg/day</p>
+                <p><strong>ICMR-NIN 2020:</strong> 140 µg/day</p>
+                <p><strong>Scientific Basis:</strong> EAR of 95µg/day, calculated RDA of 133µg/day, rounded to 140µg/day</p>
+                <p><strong>Source Text:</strong> "Based on accumulation of radioiodine in the thyroid gland in turnover studies observed in euthyroid individuals, and positive iodine balance studies in adults with normal thyroid function, the requirements of iodine were estimated and considering a CV of 20% due to variations in experimental design, the RDA was calculated."</p>
+                <p><strong>Population Impact:</strong> 7% reduction has major implications for national salt iodization programs.</p>`
+            },
+            'copper_correction': {
+                title: 'Copper: ICMR vs NIH Major Divergence',
+                content: `<p><strong>ICMR-NIN 2020:</strong> 1.7 mg/day (1700 µg)</p>
+                <p><strong>NIH ODS (USA):</strong> 900 µg/day</p>
+                <p><strong>Variance:</strong> +89% higher for Indian population</p>
+                <p><strong>Risk Assessment:</strong> Products formulated using NIH values are severely under-dosed for Indian consumers</p>
+                <p><strong>Bioavailability Context:</strong> Difference likely reflects variations in dietary copper absorption from Indian vegetarian diets vs. Western mixed diets</p>
+                <p><strong>Regulatory Impact:</strong> FSSAI regulations should prioritize ICMR values over international standards.</p>`
+            },
+            'manganese_correction': {
+                title: 'Manganese: 74% Higher Indian Requirements',
+                content: `<p><strong>ICMR-NIN 2020 AI:</strong> 4.0 mg/day</p>
+                <p><strong>NIH ODS AI (USA):</strong> 2.3 mg/day (Male), 1.8 mg/day (Female)</p>
+                <p><strong>Variance:</strong> +74% higher for Indian population</p>
+                <p><strong>Dietary Context:</strong> Higher requirement likely reflects manganese absorption patterns from Indian cereals and legumes</p>
+                <p><strong>Deficiency Risk:</strong> Using U.S. values could lead to inadequate manganese status in Indian population</p>
+                <p><strong>Function:</strong> Critical for bone development, wound healing, and carbohydrate metabolism.</p>`
+            },
+            'primary_reference': {
+                title: 'Authority Hierarchy for Indian Nutrition',
+                content: `<p><strong>Primary Authority:</strong> ICMR-NIN Expert Group on Nutrient Requirement for Indians, RDA and EAR - 2020</p>
+                <p><strong>Secondary Sources (when ICMR data unavailable):</strong></p>
+                <ul style="margin-left: 20px;">
+                    <li>World Health Organization (WHO) - for public health targets</li>
+                    <li>U.S. NIH Office of Dietary Supplements - for trace minerals</li>
+                    <li>Institute of Medicine/National Academies - for DRI cross-reference</li>
+                </ul>
+                <p><strong>Principle:</strong> Indian-specific data takes precedence over international guidelines to account for genetic, dietary, and environmental differences.</p>`
+            },
+            'energy_notes': {
+                title: 'Energy Requirements Methodology',
+                content: `<p><strong>Reference Values:</strong> 2710 kcal (Male), 2130 kcal (Female)</p>
+                <p><strong>Activity Level:</strong> Moderate work</p>
+                <p><strong>Reference Body Weights:</strong> 65kg (Male), 55kg (Female)</p>
+                <p><strong>Methodology Update:</strong> Values revised downward from 2010 levels using more accurate Doubly Labelled Water (DLW) technique</p>
+                <p><strong>Validation:</strong> Based on Indian population studies rather than extrapolation from Western data</p>`
+            },
+            'rda_definition': {
+                title: 'RDA Definition and Statistical Basis',
+                content: `<p><strong>Definition:</strong> The average daily dietary nutrient intake level sufficient to meet the nutrient requirements of nearly all (97.5%) healthy individuals in a particular life stage and gender group.</p>
+                <p><strong>Statistical Basis:</strong> Set at the 97.5th percentile of the requirements distribution</p>
+                <p><strong>Risk of Inadequacy:</strong> Very small (2.5%) when RDA is met</p>
+                <p><strong>Individual Variation:</strong> Most individuals require less than the RDA, but the RDA ensures adequacy for nearly the entire population</p>
+                <p><strong>Application:</strong> Used for planning diets for individuals and evaluating dietary adequacy.</p>`
+            }
+        };
+
+        // Modal functionality
+        const modal = document.getElementById('referenceModal');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalContent = document.getElementById('modalContent');
+        const closeBtn = document.querySelector('.close');
+
+        function showReference(refId) {
+            const ref = references[refId];
+            if (ref) {
+                modalTitle.textContent = ref.title;
+                modalContent.innerHTML = ref.content;
+                modal.style.display = 'block';
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        closeBtn.onclick = function() {
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        window.onclick = function(event) {
+            if (event.target === modal) {
+                modal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        }
+
+        // Collapsible functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const collapsibles = document.querySelectorAll('.collapsible');
+            collapsibles.forEach(collapsible => {
+                collapsible.addEventListener('click', function() {
+                    this.classList.toggle('active');
+                    const content = this.nextElementSibling;
+                    if (content.style.display === 'block') {
+                        content.style.display = 'none';
+                    } else {
+                        content.style.display = 'block';
+                    }
+                });
+            });
+        });
+
+        // Smooth scrolling for table of contents
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

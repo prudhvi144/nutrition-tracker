@@ -1,0 +1,34 @@
+Nutrient,Category,Daily_Need_Male,Daily_Need_Female,Daily_Unit,Weekly_Need_Male,Weekly_Need_Female,Weekly_Unit,Reference_Source
+Energy,Macronutrient,2710.0,2711.0,kcal,18970.0,18977.0,kcal,ICMR-NIN 2020 Table 1b; Female scaled by 70/55
+Carbohydrates (55%E midpoint),Macronutrient,372.6,372.8,g,2608.2,2609.6,g,ICMR-NIN 2020 (planned as % energy)
+Proteins,Macronutrient,53.9,58.1,g,377.3,406.7,g,ICMR-NIN 2020 (0.83 g/kg/day)
+Visible Fat,Macronutrient,30.0,25.0,g,210.0,175.0,g,ICMR-NIN 2020 (moderate activity)
+Dietary Fiber,Macronutrient,40.6,40.7,g,284.2,284.9,g,ICMR-NIN 2020 (30 g/2000 kcal scaled)
+Water (total fluids),Water,2.5,2.5,L,17.5,17.5,L,ICMR-NIN 2020 ml/kg ranges (planning target)
+Linoleic acid (n-6),Fatty acid (essential),6.6,6.6,g,46.2,46.2,g,ICMR-NIN 2020
+"Alpha-linolenic acid (ALA, n-3)",Fatty acid (essential),2.2,2.2,g,15.4,15.4,g,ICMR-NIN 2020
+Vitamin A (RAE),Vitamin,1000.0,840.0,µg,7000.0,5880.0,µg,ICMR-NIN 2020
+Vitamin D,Vitamin,600.0,600.0,IU,4200.0,4200.0,IU,ICMR-NIN 2020
+Vitamin E (alpha-tocopherol),Vitamin,10.0,10.0,mg,70.0,70.0,mg,ICMR-NIN 2020 (7.5–10 mg range)
+Vitamin K,Vitamin,55.0,55.0,µg,385.0,385.0,µg,ICMR-NIN 2020
+Vitamin C,Vitamin,80.0,65.0,mg,560.0,455.0,mg,ICMR-NIN 2020
+Thiamin (B1),Vitamin,1.8,1.7,mg,12.6,11.9,mg,ICMR-NIN 2020
+Riboflavin (B2),Vitamin,2.5,2.4,mg,17.5,16.8,mg,ICMR-NIN 2020
+Niacin (B3),Vitamin,18.0,14.0,mg,126.0,98.0,mg,ICMR-NIN 2020
+Vitamin B6,Vitamin,2.4,1.9,mg,16.8,13.3,mg,ICMR-NIN 2020
+Folate,Vitamin,300.0,220.0,µg,2100.0,1540.0,µg,ICMR-NIN 2020
+Vitamin B12,Vitamin,2.2,2.2,µg,15.4,15.4,µg,ICMR-NIN 2020
+Calcium,Mineral,1000.0,1000.0,mg,7000.0,7000.0,mg,ICMR-NIN 2020
+Iron,Mineral,19.0,29.0,mg,133.0,203.0,mg,ICMR-NIN 2020
+Zinc,Mineral,17.0,13.2,mg,119.0,92.4,mg,ICMR-NIN 2020
+Magnesium,Mineral,440.0,370.0,mg,3080.0,2590.0,mg,ICMR-NIN 2020
+Iodine,Mineral,150.0,150.0,µg,1050.0,1050.0,µg,ICMR-NIN 2020
+Sodium (upper limit),Mineral (limit),2000.0,2000.0,mg,14000.0,14000.0,mg,WHO 2012; adopted in ICMR text
+Potassium (AI),Mineral (AI),3510.0,3510.0,mg,24570.0,24570.0,mg,WHO 2012; adopted in ICMR text
+Phosphorus,Mineral,700.0,700.0,mg,4900.0,4900.0,mg,NIH ODS / IOM
+Selenium,Mineral,55.0,55.0,µg,385.0,385.0,µg,NIH ODS
+Copper,Mineral,900.0,900.0,µg,6300.0,6300.0,µg,NIH ODS
+Manganese (AI),Mineral (AI),2.3,1.8,mg,16.1,12.6,mg,NIH ODS AI
+Chromium (AI),Mineral (AI),35.0,25.0,µg,245.0,175.0,µg,NIH ODS AI
+Molybdenum,Mineral,45.0,45.0,µg,315.0,315.0,µg,NIH ODS
+Chloride (AI),Mineral (AI),2300.0,2300.0,mg,16100.0,16100.0,mg,IOM AI
