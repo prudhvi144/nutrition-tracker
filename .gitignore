@@ -39,5 +39,6 @@ Thumbs.db
 user_data.json
 *.log
 
-# Backup files
-templates/index_old.html
+# Backup files and folders
+Backup/
+app_interface/index_old.html

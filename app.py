@@ -5,7 +5,7 @@ import os
 import csv
 import pandas as pd
 
-app = Flask(__name__)
+app = Flask(__name__, template_folder='app_interface')
 app.secret_key = 'your-secret-key-change-this'
 
 def load_nutrition_data():
