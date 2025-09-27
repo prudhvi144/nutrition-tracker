@@ -6,8 +6,6 @@ import csv
 import pandas as pd
 import plotly.graph_objs as go
 import plotly.utils
-import pytesseract
-from PIL import Image
 import io
 import base64
 import re
@@ -105,36 +103,6 @@ def get_bmi_category(bmi):
     else:
         return "Obese", "Consult healthcare provider for guidance", "#F44336"
 
-def extract_weight_from_image(image_data):
-    """Extract weight from scale image using OCR"""
-    try:
-        # Decode base64 image
-        image_bytes = base64.b64decode(image_data.split(',')[1])
-        image = Image.open(io.BytesIO(image_bytes))
-        
-        # Use OCR to extract text
-        text = pytesseract.image_to_string(image)
-        
-        # Look for numbers that could be weight
-        # Common patterns: "180.5", "180", "180.5 kg", "180.5 lbs"
-        weight_patterns = [
-            r'(\d+\.?\d*)\s*(?:kg|KG|kilogram)',  # with kg
-            r'(\d+\.?\d*)\s*(?:lb|LB|lbs|LBS|pound)',  # with lbs
-            r'(\d{2,3}\.?\d*)',  # just numbers (2-3 digits)
-        ]
-        
-        for pattern in weight_patterns:
-            matches = re.findall(pattern, text, re.IGNORECASE)
-            if matches:
-                # Return the first reasonable weight found
-                weight = float(matches[0])
-                if 30 <= weight <= 500:  # Reasonable weight range
-                    return weight
-        
-        return None
-    except Exception as e:
-        print(f"OCR Error: {e}")
-        return None
 
 def load_nutrition_data():
     """Load nutrition requirements from CSV file"""
@@ -534,18 +502,6 @@ def get_bmi_chart(user_name):
         'weight_chart': plotly.utils.PlotlyJSONEncoder().encode(fig2)
     })
 
-@app.route('/ocr_weight', methods=['POST'])
-def ocr_weight():
-    """Extract weight from uploaded scale image"""
-    data = request.json
-    image_data = data['image']
-    
-    weight = extract_weight_from_image(image_data)
-    
-    if weight:
-        return jsonify({'status': 'success', 'weight': weight})
-    else:
-        return jsonify({'status': 'error', 'message': 'Could not extract weight from image'})
 
 if __name__ == '__main__':
     # Initialize GitHub storage
