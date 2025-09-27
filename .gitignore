@@ -38,6 +38,8 @@ Thumbs.db
 # Local development
 user_data.json
 *.log
+.env
+*.db
 
 # Backup files and folders
 Backup/

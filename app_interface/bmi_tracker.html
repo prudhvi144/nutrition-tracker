@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nandan & Akyee's BMI Tracker</title>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 30px;
+            text-align: center;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+        }
+
+        .header h1 {
+            color: #2196F3;
+            font-size: 2.8rem;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .subtitle {
+            color: #666;
+            font-size: 1.2rem;
+            margin-bottom: 0;
+        }
+
+        .user-selection {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .user-card {
+            background: white;
+            border-radius: 20px;
+            padding: 40px 30px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border: 3px solid transparent;
+        }
+
+        .user-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .user-card.active {
+            border-color: #2196F3;
+            box-shadow: 0 15px 35px rgba(33, 150, 243, 0.3);
+        }
+
+        .user-card.nandan {
+            background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+        }
+
+        .user-card.akyee {
+            background: linear-gradient(135deg, #fce4ec 0%, #f8bbd9 100%);
+        }
+
+        .user-avatar {
+            font-size: 4rem;
+            margin-bottom: 15px;
+        }
+
+        .user-name {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .user-card.nandan .user-name {
+            color: #1976d2;
+        }
+
+        .user-card.akyee .user-name {
+            color: #c2185b;
+        }
+
+        .user-height {
+            color: #666;
+            font-size: 1.1rem;
+            margin-bottom: 0;
+        }
+
+        .weight-input-section {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            display: none;
+        }
+
+        .weight-input-section.active {
+            display: block;
+        }
+
+        .input-group {
+            margin-bottom: 25px;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 12px;
+            font-weight: 600;
+            color: #333;
+            font-size: 1.1rem;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 18px;
+            border: 3px solid #e0e0e0;
+            border-radius: 15px;
+            font-size: 1.3rem;
+            transition: all 0.3s;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .input-group input:focus {
+            outline: none;
+            border-color: #2196F3;
+            box-shadow: 0 0 0 3px rgba(33, 150, 243, 0.1);
+        }
+
+        .btn {
+            background: linear-gradient(45deg, #2196F3, #42A5F5);
+            color: white;
+            border: none;
+            padding: 18px 40px;
+            border-radius: 25px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin: 10px;
+            box-shadow: 0 8px 20px rgba(33, 150, 243, 0.3);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 25px rgba(33, 150, 243, 0.4);
+        }
+
+        .btn-success {
+            background: linear-gradient(45deg, #4CAF50, #66BB6A);
+            box-shadow: 0 8px 20px rgba(76, 175, 80, 0.3);
+        }
+
+        .btn-success:hover {
+            box-shadow: 0 12px 25px rgba(76, 175, 80, 0.4);
+        }
+
+        .bmi-result {
+            margin-top: 20px;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            font-weight: 600;
+            display: none;
+        }
+
+        .records-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        .records-table th, .records-table td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .records-table th {
+            background: #f5f5f5;
+            font-weight: 600;
+        }
+
+        .records-table tr:hover {
+            background: #f9f9f9;
+        }
+
+        .chart-container {
+            margin-top: 30px;
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .ocr-section {
+            border: 2px dashed #ddd;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            margin: 20px 0;
+            transition: border-color 0.3s;
+        }
+
+        .ocr-section:hover {
+            border-color: #2196F3;
+        }
+
+        .file-input {
+            display: none;
+        }
+
+        .upload-btn {
+            background: linear-gradient(45deg, #9C27B0, #BA68C8);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 20px;
+        }
+
+        .status-message {
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            display: none;
+        }
+
+        .status-success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .status-error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>💕 Nandan & Akyee's BMI Tracker</h1>
+            <p class="subtitle">Simple family health tracking</p>
+        </div>
+
+        <!-- User Selection -->
+        <div class="user-selection">
+            <div class="user-card nandan" onclick="selectUser('Nandan', 175)">
+                <div class="user-avatar">👨</div>
+                <div class="user-name">Nandan</div>
+                <div class="user-height">5'9" (175 cm)</div>
+            </div>
+            <div class="user-card akyee" onclick="selectUser('Akyee', 165)">
+                <div class="user-avatar">👩</div>
+                <div class="user-name">Akyee</div>
+                <div class="user-height">5'5" (165 cm)</div>
+            </div>
+        </div>
+
+        <!-- Weight Input Section -->
+        <div class="weight-input-section" id="weight-section">
+            <div style="text-align: center; margin-bottom: 30px;">
+                <h2 id="current-user-title" style="color: #2196F3; font-size: 2rem; margin-bottom: 10px;"></h2>
+                <p style="color: #666; font-size: 1.1rem;">Enter your current weight</p>
+            </div>
+
+            <div class="input-group">
+                <label for="weight">Weight (kg)</label>
+                <input type="number" id="weight" placeholder="70.5" step="0.1" min="30" max="200">
+            </div>
+
+            <div class="input-group">
+                <label for="date">Date</label>
+                <input type="date" id="date">
+            </div>
+
+            <div style="text-align: center;">
+                <button class="btn btn-success" onclick="calculateAndSaveBMI()">
+                    📊 Save BMI Record
+                </button>
+                <button class="btn" onclick="showCharts()" id="charts-btn" style="display: none;">
+                    📈 View Progress
+                </button>
+            </div>
+
+            <!-- BMI Result -->
+            <div id="bmi-result" class="bmi-result" style="display: none; margin-top: 30px; padding: 25px; border-radius: 15px; text-align: center;">
+                <div id="bmi-value" style="font-size: 2.5rem; margin-bottom: 15px; font-weight: 700;"></div>
+                <div id="bmi-category" style="font-size: 1.4rem; margin-bottom: 15px; font-weight: 600;"></div>
+                <div id="bmi-description" style="font-size: 1.1rem;"></div>
+            </div>
+        </div>
+
+        <!-- Charts Section -->
+        <div id="charts-section" style="display: none;">
+            <div style="background: white; border-radius: 20px; padding: 30px; margin-bottom: 30px; box-shadow: 0 15px 35px rgba(0,0,0,0.1);">
+                <div style="text-align: center; margin-bottom: 20px;">
+                    <button class="btn" onclick="hideCharts()">← Back to Input</button>
+                    <button class="btn btn-success" onclick="exportCSV()">📥 Export Data</button>
+                </div>
+                <div id="bmi-chart"></div>
+            </div>
+            <div style="background: white; border-radius: 20px; padding: 30px; box-shadow: 0 15px 35px rgba(0,0,0,0.1);">
+                <div id="weight-chart"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Set today's date as default
+        document.getElementById('date').valueAsDate = new Date();
+        
+        let currentUser = null;
+        let currentHeight = null;
+
+        // Preset user data
+        const users = {
+            'Nandan': { height: 175, color: '#1976d2' },
+            'Akyee': { height: 165, color: '#c2185b' }
+        };
+
+        function selectUser(userName, height) {
+            currentUser = userName;
+            currentHeight = height;
+            
+            // Update UI
+            document.querySelectorAll('.user-card').forEach(card => {
+                card.classList.remove('active');
+            });
+            
+            // Add active class to selected user
+            document.querySelector(`.user-card.${userName.toLowerCase()}`).classList.add('active');
+            
+            // Show weight input section
+            document.getElementById('weight-section').classList.add('active');
+            document.getElementById('current-user-title').textContent = `${userName}'s BMI Entry`;
+            document.getElementById('current-user-title').style.color = users[userName].color;
+            
+            // Auto-save profile
+            saveProfile(userName, height);
+            
+            // Load existing records and show charts button if data exists
+            loadRecords();
+            
+            // Clear previous weight input
+            document.getElementById('weight').value = '';
+            document.getElementById('weight').focus();
+        }
+
+        function saveProfile(name, height) {
+            fetch('/save_user_profile', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    name: name,
+                    height_cm: height,
+                    unit_preference: 'metric'
+                })
+            })
+            .then(response => response.json())
+            .catch(error => {
+                console.error('Error saving profile:', error);
+            });
+        }
+
+        function calculateAndSaveBMI() {
+            if (!currentUser) {
+                alert('Please select a user first!');
+                return;
+            }
+            
+            const weight = document.getElementById('weight').value;
+            const date = document.getElementById('date').value;
+            
+            if (!weight || !date) {
+                alert('Please enter weight and date');
+                return;
+            }
+            
+            fetch('/add_bmi_record', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    user_name: currentUser,
+                    date: date,
+                    weight: parseFloat(weight),
+                    weight_unit: 'kg'
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === 'success') {
+                    // Display BMI result
+                    const resultDiv = document.getElementById('bmi-result');
+                    const valueDiv = document.getElementById('bmi-value');
+                    const categoryDiv = document.getElementById('bmi-category');
+                    const descriptionDiv = document.getElementById('bmi-description');
+                    
+                    valueDiv.textContent = `BMI: ${data.bmi}`;
+                    categoryDiv.textContent = data.category;
+                    descriptionDiv.textContent = data.description;
+                    
+                    resultDiv.style.backgroundColor = data.color + '20';
+                    resultDiv.style.borderLeft = `5px solid ${data.color}`;
+                    resultDiv.style.display = 'block';
+                    
+                    // Show charts button
+                    document.getElementById('charts-btn').style.display = 'inline-block';
+                    
+                    // Clear weight input for next entry
+                    document.getElementById('weight').value = '';
+                    
+                    // Success animation
+                    resultDiv.style.transform = 'scale(0.9)';
+                    setTimeout(() => {
+                        resultDiv.style.transform = 'scale(1)';
+                    }, 200);
+                    
+                } else {
+                    alert('Error: ' + (data.error || 'Failed to save BMI record'));
+                }
+            })
+            .catch(error => {
+                alert('Network error. Please try again.');
+            });
+        }
+
+        function loadRecords() {
+            if (!currentUser) return;
+            
+            fetch(`/get_bmi_records/${currentUser}`)
+            .then(response => response.json())
+            .then(records => {
+                if (records.length > 0) {
+                    document.getElementById('charts-btn').style.display = 'inline-block';
+                }
+            })
+            .catch(error => {
+                console.error('Error loading records:', error);
+            });
+        }
+
+        function showCharts() {
+            if (!currentUser) {
+                alert('Please select a user first!');
+                return;
+            }
+            
+            fetch(`/get_bmi_chart/${currentUser}`)
+            .then(response => response.json())
+            .then(data => {
+                if (data.error) {
+                    alert('No data available for charts yet. Add some BMI records first!');
+                    return;
+                }
+                
+                // Hide weight section and show charts
+                document.getElementById('weight-section').style.display = 'none';
+                document.getElementById('charts-section').style.display = 'block';
+                
+                // Plot BMI chart
+                const bmiChart = JSON.parse(data.bmi_chart);
+                Plotly.newPlot('bmi-chart', bmiChart.data, bmiChart.layout, {responsive: true});
+                
+                // Plot weight chart
+                const weightChart = JSON.parse(data.weight_chart);
+                Plotly.newPlot('weight-chart', weightChart.data, weightChart.layout, {responsive: true});
+                
+                // Scroll to top
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            })
+            .catch(error => {
+                alert('Error loading charts');
+            });
+        }
+
+        function hideCharts() {
+            document.getElementById('charts-section').style.display = 'none';
+            document.getElementById('weight-section').style.display = 'block';
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function exportCSV() {
+            if (!currentUser) {
+                alert('Please select a user first!');
+                return;
+            }
+            
+            window.open(`/export_bmi_csv/${currentUser}`, '_blank');
+        }
+
+        // Enter key support for weight input
+        document.getElementById('weight').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                calculateAndSaveBMI();
+            }
+        });
+    </script>
+</body>
+</html>

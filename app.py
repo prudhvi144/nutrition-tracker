@@ -1,12 +1,140 @@
-from flask import Flask, render_template, request, jsonify, session
+from flask import Flask, render_template, request, jsonify, session, send_file, Response
 from datetime import datetime, timedelta
 import json
 import os
 import csv
 import pandas as pd
+import plotly.graph_objs as go
+import plotly.utils
+import pytesseract
+from PIL import Image
+import io
+import base64
+import re
+import requests
+from dotenv import load_dotenv
+
+# Load environment variables from .env file
+load_dotenv()
 
 app = Flask(__name__, template_folder='app_interface')
 app.secret_key = 'your-secret-key-change-this'
+
+# GitHub API Configuration
+GITHUB_TOKEN = os.environ.get('GITHUB_TOKEN', '')  # Set this in environment variables
+GITHUB_REPO = 'prudhvi144/nutrition-tracker'  # Your GitHub repo
+GITHUB_API_BASE = 'https://api.github.com'
+
+def get_github_headers():
+    """Get headers for GitHub API requests"""
+    return {
+        'Authorization': f'token {GITHUB_TOKEN}',
+        'Accept': 'application/vnd.github.v3+json',
+        'Content-Type': 'application/json'
+    }
+
+def get_github_file(file_path):
+    """Get file content from GitHub repository"""
+    url = f'{GITHUB_API_BASE}/repos/{GITHUB_REPO}/contents/{file_path}'
+    
+    try:
+        response = requests.get(url, headers=get_github_headers())
+        if response.status_code == 200:
+            file_data = response.json()
+            # Decode base64 content
+            content = base64.b64decode(file_data['content']).decode('utf-8')
+            return json.loads(content), file_data['sha']
+        elif response.status_code == 404:
+            # File doesn't exist, return empty data
+            return {}, None
+        else:
+            print(f"GitHub API Error: {response.status_code} - {response.text}")
+            return {}, None
+    except Exception as e:
+        print(f"Error fetching GitHub file: {e}")
+        return {}, None
+
+def update_github_file(file_path, content, sha=None, commit_message="Update BMI data"):
+    """Update file in GitHub repository"""
+    url = f'{GITHUB_API_BASE}/repos/{GITHUB_REPO}/contents/{file_path}'
+    
+    # Encode content to base64
+    content_encoded = base64.b64encode(json.dumps(content, indent=2).encode('utf-8')).decode('utf-8')
+    
+    data = {
+        'message': commit_message,
+        'content': content_encoded
+    }
+    
+    if sha:
+        data['sha'] = sha
+    
+    try:
+        response = requests.put(url, headers=get_github_headers(), json=data)
+        if response.status_code in [200, 201]:
+            return True
+        else:
+            print(f"GitHub API Error: {response.status_code} - {response.text}")
+            return False
+    except Exception as e:
+        print(f"Error updating GitHub file: {e}")
+        return False
+
+def get_user_data_file(user_name):
+    """Get file path for user's BMI data"""
+    return f'bmi_data/{user_name.lower().replace(" ", "_")}_bmi.json'
+
+def init_bmi_storage():
+    """Initialize GitHub storage - create directory structure if needed"""
+    # This will be handled automatically when we create the first file
+    pass
+
+def calculate_bmi(height_cm, weight_kg):
+    """Calculate BMI given height in cm and weight in kg"""
+    height_m = height_cm / 100
+    return weight_kg / (height_m * height_m)
+
+def get_bmi_category(bmi):
+    """Get BMI category and description"""
+    if bmi < 18.5:
+        return "Underweight", "Consider gaining weight for better health", "#2196F3"
+    elif 18.5 <= bmi < 25:
+        return "Normal Weight", "Healthy weight range - keep it up!", "#4CAF50"
+    elif 25 <= bmi < 30:
+        return "Overweight", "Consider weight management strategies", "#FF9800"
+    else:
+        return "Obese", "Consult healthcare provider for guidance", "#F44336"
+
+def extract_weight_from_image(image_data):
+    """Extract weight from scale image using OCR"""
+    try:
+        # Decode base64 image
+        image_bytes = base64.b64decode(image_data.split(',')[1])
+        image = Image.open(io.BytesIO(image_bytes))
+        
+        # Use OCR to extract text
+        text = pytesseract.image_to_string(image)
+        
+        # Look for numbers that could be weight
+        # Common patterns: "180.5", "180", "180.5 kg", "180.5 lbs"
+        weight_patterns = [
+            r'(\d+\.?\d*)\s*(?:kg|KG|kilogram)',  # with kg
+            r'(\d+\.?\d*)\s*(?:lb|LB|lbs|LBS|pound)',  # with lbs
+            r'(\d{2,3}\.?\d*)',  # just numbers (2-3 digits)
+        ]
+        
+        for pattern in weight_patterns:
+            matches = re.findall(pattern, text, re.IGNORECASE)
+            if matches:
+                # Return the first reasonable weight found
+                weight = float(matches[0])
+                if 30 <= weight <= 500:  # Reasonable weight range
+                    return weight
+        
+        return None
+    except Exception as e:
+        print(f"OCR Error: {e}")
+        return None
 
 def load_nutrition_data():
     """Load nutrition requirements from CSV file"""
@@ -177,7 +305,252 @@ def get_weekly_summary():
     
     return jsonify(summary)
 
+# BMI Tracker Routes
+@app.route('/bmi-tracker')
+def bmi_tracker():
+    """BMI Calculator & Tracker main page"""
+    return render_template('bmi_tracker.html')
+
+@app.route('/save_user_profile', methods=['POST'])
+def save_user_profile():
+    """Save user profile with height preference"""
+    data = request.json
+    name = data['name']
+    height_cm = float(data['height_cm'])
+    unit_preference = data.get('unit_preference', 'metric')
+    
+    # Get user's data file
+    file_path = get_user_data_file(name)
+    user_data, sha = get_github_file(file_path)
+    
+    # Update profile information
+    if not user_data:
+        user_data = {
+            'profile': {},
+            'records': []
+        }
+    
+    user_data['profile'] = {
+        'name': name,
+        'height_cm': height_cm,
+        'unit_preference': unit_preference,
+        'created_at': datetime.now().isoformat()
+    }
+    
+    # Save to GitHub
+    success = update_github_file(file_path, user_data, sha, f"Update profile for {name}")
+    
+    if success:
+        return jsonify({'status': 'success', 'message': 'Profile saved successfully'})
+    else:
+        return jsonify({'status': 'error', 'message': 'Failed to save profile'}), 500
+
+@app.route('/get_user_profile/<name>')
+def get_user_profile(name):
+    """Get user profile"""
+    file_path = get_user_data_file(name)
+    user_data, _ = get_github_file(file_path)
+    
+    if user_data and 'profile' in user_data:
+        profile = user_data['profile']
+        return jsonify({
+            'name': profile['name'],
+            'height_cm': profile['height_cm'],
+            'unit_preference': profile['unit_preference']
+        })
+    else:
+        return jsonify({'error': 'User not found'}), 404
+
+@app.route('/add_bmi_record', methods=['POST'])
+def add_bmi_record():
+    """Add new BMI record"""
+    data = request.json
+    user_name = data['user_name']
+    date = data['date']
+    weight = float(data['weight'])
+    weight_unit = data.get('weight_unit', 'kg')
+    
+    # Get user's data
+    file_path = get_user_data_file(user_name)
+    user_data, sha = get_github_file(file_path)
+    
+    if not user_data or 'profile' not in user_data:
+        return jsonify({'error': 'User profile not found. Please save profile first.'}), 404
+    
+    height_cm = user_data['profile']['height_cm']
+    
+    # Convert weight to kg if needed
+    weight_kg = weight
+    if weight_unit.lower() in ['lbs', 'lb', 'pounds']:
+        weight_kg = weight * 0.453592
+    
+    # Calculate BMI
+    bmi = calculate_bmi(height_cm, weight_kg)
+    
+    # Create new record
+    new_record = {
+        'date': date,
+        'weight': weight,
+        'bmi': round(bmi, 2),
+        'weight_unit': weight_unit,
+        'created_at': datetime.now().isoformat()
+    }
+    
+    # Add record to user data
+    if 'records' not in user_data:
+        user_data['records'] = []
+    
+    user_data['records'].append(new_record)
+    
+    # Sort records by date (newest first)
+    user_data['records'].sort(key=lambda x: x['date'], reverse=True)
+    
+    # Save to GitHub
+    success = update_github_file(file_path, user_data, sha, f"Add BMI record for {user_name} on {date}")
+    
+    if success:
+        category, description, color = get_bmi_category(bmi)
+        return jsonify({
+            'status': 'success',
+            'bmi': round(bmi, 1),
+            'category': category,
+            'description': description,
+            'color': color
+        })
+    else:
+        return jsonify({'error': 'Failed to save BMI record'}), 500
+
+@app.route('/get_bmi_records/<user_name>')
+def get_bmi_records(user_name):
+    """Get all BMI records for a user"""
+    file_path = get_user_data_file(user_name)
+    user_data, _ = get_github_file(file_path)
+    
+    if user_data and 'records' in user_data:
+        records = user_data['records']
+        return jsonify([{
+            'date': record['date'],
+            'weight': record['weight'],
+            'bmi': round(record['bmi'], 1),
+            'weight_unit': record['weight_unit']
+        } for record in records])
+    else:
+        return jsonify([])
+
+@app.route('/export_bmi_csv/<user_name>')
+def export_bmi_csv(user_name):
+    """Export BMI data as CSV"""
+    file_path = get_user_data_file(user_name)
+    user_data, _ = get_github_file(file_path)
+    
+    if not user_data or 'records' not in user_data:
+        return jsonify({'error': 'No data found'}), 404
+    
+    records = user_data['records']
+    # Sort by date ascending for CSV export
+    records_sorted = sorted(records, key=lambda x: x['date'])
+    
+    # Create CSV content
+    csv_content = "Date,Weight,BMI,Weight Unit\n"
+    for record in records_sorted:
+        csv_content += f"{record['date']},{record['weight']},{record['bmi']:.1f},{record['weight_unit']}\n"
+    
+    # Create response
+    response = Response(
+        csv_content,
+        mimetype='text/csv',
+        headers={'Content-Disposition': f'attachment; filename={user_name}_bmi_data.csv'}
+    )
+    
+    return response
+
+@app.route('/get_bmi_chart/<user_name>')
+def get_bmi_chart(user_name):
+    """Generate BMI progress chart"""
+    file_path = get_user_data_file(user_name)
+    user_data, _ = get_github_file(file_path)
+    
+    if not user_data or 'records' not in user_data or not user_data['records']:
+        return jsonify({'error': 'No data found'}), 404
+    
+    # Sort records by date ascending for charts
+    records = sorted(user_data['records'], key=lambda x: x['date'])
+    
+    dates = [record['date'] for record in records]
+    weights = [record['weight'] for record in records]
+    bmis = [record['bmi'] for record in records]
+    
+    # Create BMI chart
+    fig = go.Figure()
+    
+    # Add BMI line
+    fig.add_trace(go.Scatter(
+        x=dates,
+        y=bmis,
+        mode='lines+markers',
+        name='BMI',
+        line=dict(color='#2196F3', width=3),
+        marker=dict(size=8)
+    ))
+    
+    # Add BMI category zones
+    fig.add_hline(y=18.5, line_dash="dash", line_color="blue", 
+                  annotation_text="Underweight", annotation_position="bottom right")
+    fig.add_hline(y=25, line_dash="dash", line_color="green", 
+                  annotation_text="Normal", annotation_position="bottom right")
+    fig.add_hline(y=30, line_dash="dash", line_color="orange", 
+                  annotation_text="Overweight", annotation_position="bottom right")
+    
+    fig.update_layout(
+        title=f'{user_name}\'s BMI Progress',
+        xaxis_title='Date',
+        yaxis_title='BMI',
+        hovermode='x unified',
+        template='plotly_white'
+    )
+    
+    # Create weight chart
+    fig2 = go.Figure()
+    
+    fig2.add_trace(go.Scatter(
+        x=dates,
+        y=weights,
+        mode='lines+markers',
+        name='Weight',
+        line=dict(color='#4CAF50', width=3),
+        marker=dict(size=8)
+    ))
+    
+    fig2.update_layout(
+        title=f'{user_name}\'s Weight Progress',
+        xaxis_title='Date',
+        yaxis_title='Weight (kg)',
+        hovermode='x unified',
+        template='plotly_white'
+    )
+    
+    return jsonify({
+        'bmi_chart': plotly.utils.PlotlyJSONEncoder().encode(fig),
+        'weight_chart': plotly.utils.PlotlyJSONEncoder().encode(fig2)
+    })
+
+@app.route('/ocr_weight', methods=['POST'])
+def ocr_weight():
+    """Extract weight from uploaded scale image"""
+    data = request.json
+    image_data = data['image']
+    
+    weight = extract_weight_from_image(image_data)
+    
+    if weight:
+        return jsonify({'status': 'success', 'weight': weight})
+    else:
+        return jsonify({'status': 'error', 'message': 'Could not extract weight from image'})
+
 if __name__ == '__main__':
+    # Initialize GitHub storage
+    init_bmi_storage()
+    
     import os
     port = int(os.environ.get('PORT', 8080))
     app.run(debug=False, host='0.0.0.0', port=port)
