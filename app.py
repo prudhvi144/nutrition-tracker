@@ -3,7 +3,8 @@ from datetime import datetime, timedelta
 import json
 import os
 import csv
-import pandas as pd
+# Pandas removed - not needed for BMI tracker
+PANDAS_AVAILABLE = False
 import plotly.graph_objs as go
 import plotly.utils
 import io
@@ -106,6 +107,10 @@ def get_bmi_category(bmi):
 
 def load_nutrition_data():
     """Load nutrition requirements from CSV file"""
+    if not PANDAS_AVAILABLE:
+        print("Pandas not available - returning empty nutrition data")
+        return []
+        
     try:
         # Use the edited CSV file with updated values for 65kg male and 70kg female
         df = pd.read_csv('weekly_nutrition_requirements_EDITED_Moderate_65kgM_70kgF.csv')
